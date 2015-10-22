@@ -62,10 +62,12 @@ ON DELETE
 	CASCADE
 );
 
-CREATE TABLE credentials(
-	id int(11) PRIMARY KEY AUTO_INCREMENT,
-	username varchar(30),
-	passcode varchar(30)
+CREATE TABLE credentials ( 
+ID int PRIMARY KEY AUTO_INCREMENT, 
+username varchar(30) UNIQUE, 
+password varchar(30), 
+name varchar(50), 
+category ENUM('Admin', 'Finance', 'Chris') NOT NULL 
 );
 
 DELIMITER // 
@@ -96,9 +98,13 @@ INSERT INTO project_staff VALUES('4','2','2016-11-02','2016-11-09');
 INSERT INTO project_staff VALUES('5','3','2017-01-02','2017-03-09');
 INSERT INTO project_staff VALUES('6','3','2017-01-02','2017-12-09');
 -- Creds data
-INSERT INTO credentials VALUES('', 'chrisr', 'chrisrocks');
-INSERT INTO credentials VALUES('','admin','admin');
-INSERT INTO credentials VALUES('','finance','dolla');
+INSERT INTO credentials VALUES('','IAMCHRIS','password','Chris Reid','Chris');
+INSERT INTO credentials VALUES('','financeUser','password','Sandra Smith','Finance');
+INSERT INTO credentials VALUES('','jordanho','password','Jordan Hoey','Admin');
+INSERT INTO credentials VALUES('','edulima','password','Eduardo Lima','Admin');
+INSERT INTO credentials VALUES('','nathanaelh7558','password','Nathanael Holmes','Admin');
+
+
 end //
 DELIMITER ;
 
