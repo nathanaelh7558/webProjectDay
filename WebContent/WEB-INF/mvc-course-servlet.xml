@@ -35,7 +35,7 @@
 		</property>
 		<property name="url" value="jdbc:mysql://localhost/EmpDB"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value=""></property>
+		<property name="password" value="ch@ngeme1"></property>
 	</bean>
 	
 	<bean id="sqlSessionFactory"

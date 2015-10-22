@@ -228,16 +228,16 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 				}  else if (category.equals("Chris")){
 					return "Chris";
 				} else {
-					return "error";
+					return "logInError";
 				}
 			} else {
 				System.out.println("Didnt log in");
-				return "error";
+				return "logInError";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "error";
+			return "logInError";
 		}
 	
 }
