@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import javax.servlet.ServletException;
@@ -18,7 +20,6 @@ import mvc_data.IWorldMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,7 +34,7 @@ private DataSource dataSource;
 
 @RequestMapping(value = "/home.mvc", method = RequestMethod.GET)
 public String home(Locale locale, Model model) {
-	return "login";
+	return "logIn";
 }
 
 @RequestMapping("/employees.mvc")
@@ -42,6 +43,7 @@ public String continents(Model m){
 	m.addAttribute("projects", worldMapper.getProjects());
 	return "employees";
 }
+
 
 @RequestMapping("/adminpage.mvc")
 public String adminPage(Model m){
@@ -64,6 +66,45 @@ public String manageProjects(Model m){
 	return "manageProjects";
 }
 
+@RequestMapping("/newuser.mvc")
+public String goToEmployee(Model m){
+	return "addEmployee";
+}
+@RequestMapping(value = "/newEmployee.mvc")
+protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter pw=response.getWriter();
+		response.setContentType("text/html");
+		String n1=request.getParameter("titleInput");
+		String n2=request.getParameter("fNameInput");
+		String n3=request.getParameter("lNameInput");
+		String n4=request.getParameter("dobInput");
+		String n5=request.getParameter("salaryInput");
+		Connection c;
+		try {
+			
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				java.util.Date dob = null;
+				java.sql.Date sqlDate = null;
+				try {
+					dob = formatter.parse(n4);
+					sqlDate = new java.sql.Date(dob.getTime());
+				} catch (ParseException e) {
+						
+				}
+			System.out.println(sqlDate);
+			c = dataSource.getConnection();
+			Statement s = c.createStatement();
+			String sqlString = "CALL insertEmployee('"+sqlDate+"',\""+n2+"\",\""+n3+"\",\""+n1+"\","+n5+");";
+			System.out.println(sqlString);
+			s.executeUpdate(sqlString);
+		return "user created";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+}
+
 @RequestMapping(value = "/hello.mvc")
 protected String doPost(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	PrintWriter pw=response.getWriter();
@@ -73,22 +114,31 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 		Connection c;
 		try {
 			System.out.println("hey");
+			System.out.println(n2);
+			System.out.println(n3);
 			c = dataSource.getConnection();
 			Statement s = c.createStatement();
-			String sqlString = "SELECT username, passcode FROM credentials WHERE username = '"+n3+"' AND passcode = '"+n2+"';";
+			String sqlString = "SELECT username, password, category, name FROM credentials WHERE username = '"+n3+"' AND password = '"+n2+"';";
 			ResultSet rs = s.executeQuery(sqlString);
 			if(rs.next()){
-				m.addAttribute("msg", rs.getString("name"));
-				System.out.println("logged in");
-				return "continents";
+				String category = rs.getString("category");
+				if(category.equals("Admin")){
+					return "Admin";
+				} else if (category.equals("Finance")){
+					return "Finance";
+				}  else if (category.equals("Chris")){
+					return "Chris";
+				} else {
+					return "error";
+				}
 			} else {
 				System.out.println("Didnt log in");
-				return "continents";
+				return "error";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "employees.mvc";
+			return "error";
 		}
 	
 }
