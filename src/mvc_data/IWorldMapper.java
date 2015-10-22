@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
 public interface IWorldMapper {
 @Select("SELECT employeeId,dob,fname, lname, title, salary FROM employee ORDER BY 1;")
 List<Employee> getEmployees();
-@Select("SELECT projectId, name,startDate, endDate FROM project ORDER BY 1;")
+@Select("SELECT projectId, name, startDate, endDate FROM project ORDER BY 1;")
 List<Project> getProjects();
 @Select("SELECT DISTINCT Region, Continent " + "FROM Country WHERE Continent =#{continent}" + "ORDER BY 1")
 List<String> getRegionsForContinent(@Param("continent") String continent);

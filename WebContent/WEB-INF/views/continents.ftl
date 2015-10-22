@@ -19,7 +19,7 @@
 <tr><th>Project Id</th><th>Project Name</th><th>Project Start Date</th><th>Project End Date</th></tr>
 <#list projects as project>
 <tr>
-<td>${project.projectId}</td><td>${project.name}</td><td>${project.startDate}</td><td>${project.endDate}</td>
+<td>${project.projectId}</td><td>${project.name}</td><td>${project.startDate?date}</td><td>${project.endDate?date}</td>
 </tr>
 </#list>
 </table>
