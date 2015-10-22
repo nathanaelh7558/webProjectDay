@@ -10,16 +10,30 @@
     <title>MVC Authentication System</title> 
 </head>
 <body>
-<form name="newEmployeeForm" action="newEmployee.mvc" method="POST">
-<h1>Add a new Employee!</h1>
 
-Title: <input type="text" name="titleInput" placeholder="Title">
-First Name: <input type="text" name="fNameInput" placeholder="First Name">
-Last Name: <input type="text" name="lNameInput" placeholder="Last Name">
-DOB: <input type="date" name="dobInput" placeholder="DOB">
-Salary: <input type="number" name="salaryInput" placeholder="Salary">
-<input type="submit" value="Submit">
+<div id='cssmenu'>
+<ul>
+   <li><a href='adminpage.mvc'><span>Home</span></a></li>
+   <li><a href='addemployeepage.mvc'><span>Add Employee</span></a></li>
+   <li><a href='remove_employee_page.mvc'><span>Remove Employee</span></a></li>
+   <li><a href='update_employee_details.mvc'><span>Update Details</span></a></li>
+</ul>
 
+</div>
+
+<div id=container>
+<form name="newEmployeeForm" action="addemployee.mvc" method="POST">
+	<section>
+	<h3>Add a new Employee</h3	>
+	  <ul class="input-list style-1 clearfix">
+	  	<li><input type="text" name="titleInput" placeholder="Title"></li>
+	  	<li><input type="text" name="fNameInput" placeholder="First Name"></li>
+	  	<li><input type="text" name="lNameInput" placeholder="Last Name"></li>
+	  	<li><input type="date" name="dobInput" value="Date of birth"></li> 	
+	  	<li><input type="number" name="salaryInput" placeholder="Salary"></li>
+	  	<input type="submit" value="Add Employee">
+	  </ul>
+	</section>
 </form>
 
 

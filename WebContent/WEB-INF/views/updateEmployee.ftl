@@ -1,3 +1,4 @@
+<!DOCTYPE html> 
 <html>
 <head>
     <meta charset="UTF-8">
@@ -8,8 +9,8 @@
    <script src="script.js"></script>
     <title>MVC Authentication System</title> 
 </head>
- <body>
- 
+<body>
+
 <div id='cssmenu'>
 <ul>
    <li><a href='adminpage.mvc'><span>Home</span></a></li>
@@ -20,6 +21,17 @@
 
 </div>
 
+<div id=container>
+<form name="newEmployeeForm" action="search_employee.mvc" method="POST">
+	<section>
+	<h3>Update Employee</h3	>
+	  <ul class="input-list style-1 clearfix">
+	  	<li><input type="text" name="titleInput" placeholder="Type employee's first name"></li>
+	  	<input type="submit" value="Search Employee">
+	  </ul>
+	</section>
+</form>
 
 
- </body>
+</body>
+</html>
