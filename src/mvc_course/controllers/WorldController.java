@@ -33,8 +33,9 @@ private DataSource dataSource;
 
 @RequestMapping(value = "/home.mvc", method = RequestMethod.GET)
 public String home(Locale locale, Model model) {
-	return "logIn";
+	return "login";
 }
+
 @RequestMapping("/employees.mvc")
 public String continents(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());

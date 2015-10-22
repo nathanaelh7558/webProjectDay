@@ -16,7 +16,10 @@ body {
 	font-family: 'Roboto', sans-serif;	
 	height: 550px;
 	margin-top: 70px;
-	
+}
+
+.button {
+width: 100%;
 }
 
 
@@ -78,7 +81,7 @@ padding:5px 15px;
 cursor:pointer;
 -webkit-border-radius: 5px;
 border-radius: 5px;
-width: 100%;
+width: 630px;
 height: 40px; 
 }
 
@@ -93,28 +96,26 @@ color: #fff
 
 <form name="user" action="hello.mvc" method="post">
 <h1>
-	MVC Authentication System Form  
+	No Exception Login System 
 </h1>
 
 <h2>Login</h2>
-<p>Insert the fields below to login</p>
+
 <div class="inputField">
   <input type="text" name="usernameInput" placeholder="Username">
   <br />
-  </div>
+ </div>
+  
   <div class="inputField">
   <input type="text" name="password" placeholder="Password">
   <br />
   
-  </div>
-  
-  <div class="inputField">
-  <a href="home">Register a new user</a>
-  </div>
-  
-  <div class="button">
+ 
   <input type="Submit" value = "Submit" />
+  
   </div>
+
+  
 </form>
 </div>
 </body>

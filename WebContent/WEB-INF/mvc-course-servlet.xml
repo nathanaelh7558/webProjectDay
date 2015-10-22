@@ -35,12 +35,14 @@
 		</property>
 		<property name="url" value="jdbc:mysql://localhost/EmpDB"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="ch@ngeme1"></property>
+		<property name="password" value=""></property>
 	</bean>
+	
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
 	<bean id="worldMapper"
 		class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface"
