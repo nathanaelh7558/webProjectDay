@@ -19,7 +19,7 @@
  <li><input type="text" name="usernameInput" placeholder="Username"></li>
  <li><input type="text" name="password" placeholder="Password"></li>
  <input type="Submit" value = "Submit" />
-ERROR! UNAUTHORIZED ACCESs!
+ERROR! UNAUTHORIZED ACCESS!
   </ul>
 	</section>
 </form>

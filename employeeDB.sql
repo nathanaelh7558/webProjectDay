@@ -21,7 +21,7 @@ CREATE TABLE employee (
 	lName varchar(30), 
 	title varchar(20), 
 	picture blob, 
-	salary decimal(11,2) 
+	salary decimal(30,2) 
 );
 CREATE TABLE salesEmp (  
 	employeeId int(11), 
