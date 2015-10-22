@@ -68,22 +68,31 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 		Connection c;
 		try {
 			System.out.println("hey");
+			System.out.println(n2);
+			System.out.println(n3);
 			c = dataSource.getConnection();
 			Statement s = c.createStatement();
-			String sqlString = "SELECT username, passcode FROM credentials WHERE username = '"+n3+"' AND passcode = '"+n2+"';";
+			String sqlString = "SELECT username, password, category, name FROM credentials WHERE username = '"+n3+"' AND password = '"+n2+"';";
 			ResultSet rs = s.executeQuery(sqlString);
 			if(rs.next()){
-				m.addAttribute("msg", rs.getString("name"));
-				System.out.println("logged in");
-				return "continents";
+				String category = rs.getString("category");
+				if(category.equals("Admin")){
+					return "employees.mvc";
+				} else if (category.equals("Finance")){
+					return "Finance";
+				}  else if (category.equals("Chris")){
+					return "Chris";
+				} else {
+					return "error";
+				}
 			} else {
 				System.out.println("Didnt log in");
-				return "continents";
+				return "error";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "employees.mvc";
+			return "error";
 		}
 	
 }
