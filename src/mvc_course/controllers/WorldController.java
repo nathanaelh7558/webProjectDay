@@ -67,7 +67,6 @@ public String adminPage2(Model m){
 }
 @RequestMapping("/addProject.mvc")
 public String addProject(Model m){
-	
 	return "addProject";
 }
 
@@ -132,27 +131,29 @@ public String removeEmployee(Model m){
 	@RequestMapping("/search_employee.mvc")
 	public String searchEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=request.getParameter("fNameInput");
-		Connection c;
-		try {
-			c = dataSource.getConnection();
-			PreparedStatement stmt = c.prepareStatement("select employeeId, fName from employee where fName =?");
-			log.info(name);
-				      stmt.setString(1,name);
-				      ResultSet rs =  stmt.executeQuery();
-				      if(rs.next()) {
-				    	  while (rs.next()) {
-					    	  log.info("**********************");
-					      }  
-				      } else {
-				    	  m.addAttribute("errorMessages", "No results found, verify name");
-				      }
-				          
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "error";
-		}
-		
+		m.addAttribute("removeEmployee", worldMapper.getEmployeeByName(name));
 		return "removeEmployee";
+//		Connection c;
+//		try {
+//			c = dataSource.getConnection();
+//			PreparedStatement stmt = c.prepareStatement("select employeeId, fName from employee where fName =?");
+//			log.info(name);
+//				      stmt.setString(1,name);
+//				      ResultSet rs =  stmt.executeQuery();
+//				      if(rs.next()) {
+//				    	  while (rs.next()) {
+//					    	  log.info("**********************");
+//					      }  
+//				      } else {
+//				    	  m.addAttribute("errorMessages", "No results found, verify name");
+//				      }
+//				          
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return "error";
+//		}
+//		
+//		return "removeEmployee";
 	}
 
 

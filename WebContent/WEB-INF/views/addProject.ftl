@@ -24,7 +24,7 @@
    <div id=container>
 <form name="newProjectForm" action="newProject.mvc" method="POST">
 	<section>
-	<h3>Add a new Employee</h3	>
+	<h3>Add Project</h3	>
 	  <ul class="input-list style-1 clearfix">
 	  	<li><input type="text" name="pNameInput" placeholder="project name"></li>
 	  	<li><input type="Date" name="startDateInput" placeholder="Start Date(DD-MM-YYYY)"></li>

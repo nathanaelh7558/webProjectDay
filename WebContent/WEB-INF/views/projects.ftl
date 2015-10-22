@@ -8,7 +8,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />   
    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
    <script src="script.js"></script>
-<title>Employees</title>
+<title>Projects</title>
 </head>
 <body>
 <div id='cssmenu'>
