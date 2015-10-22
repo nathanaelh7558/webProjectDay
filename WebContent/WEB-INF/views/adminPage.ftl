@@ -20,6 +20,8 @@
 </div>
 
 
-<h2>Welcome ${adminName} </h2>
+<#if adminName??><h2>Welcome ${adminName} </h2><#else></#if>
+
+
 
  </body>
