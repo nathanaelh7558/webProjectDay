@@ -12,7 +12,8 @@
  
 <div id='cssmenu'>
 <ul>
-   <li><a href='adminpage.mvc'><span>Home</span></a></li>
+   <li><a href='adminpage2.mvc'><span>Home</span></a></li>
+   <li><a href='employees.mvc'><span>View Employees</span></a></li>
    <li><a href='#'><span>Add Employee</span></a></li>
    <li><a href='#'><span>Remove Employee</span></a></li>
    <li><a href='#'><span>Update Details</span></a></li>
@@ -28,7 +29,7 @@
 	  	<li><input type="text" name="titleInput" placeholder="Title"></li>
 	  	<li><input type="text" name="fNameInput" placeholder="First Name"></li>
 	  	<li><input type="text" name="lNameInput" placeholder="Last Name"></li>
-	  	<li><input type="date" name="dobInput" value="Date of birth"></li> 	
+	  	<li><input type="date" name="dobInput" placeholder="Date of Birth (DD-MM-YYYY)"></li> 	
 	  	<li><input type="number" name="salaryInput" placeholder="Salary"></li>
 	  	<input type="submit" value="Add Employee">
 	  </ul>

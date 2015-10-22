@@ -20,6 +20,6 @@
 </div>
 
 
-<h2>Welcome Admin</h2>
+<h2>Welcome ${adminName} </h2>
 
  </body>

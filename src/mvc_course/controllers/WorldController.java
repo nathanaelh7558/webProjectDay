@@ -40,16 +40,29 @@ public String home(Locale locale, Model model) {
 @RequestMapping("/employees.mvc")
 public String continents(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
-	m.addAttribute("projects", worldMapper.getProjects());
 	return "employees";
 }
-
+@RequestMapping("/projects.mvc")
+public String continents2(Model m){
+	m.addAttribute("projects", worldMapper.getProjects());
+	return "projects";
+}
 
 @RequestMapping("/adminpage.mvc")
 public String adminPage(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
 	m.addAttribute("projects", worldMapper.getProjects());
 	return "adminPage";
+}
+@RequestMapping("/adminpage2.mvc")
+public String adminPage2(Model m){
+	
+	return "adminPage2";
+}
+@RequestMapping("/addProject.mvc")
+public String addProject(Model m){
+	
+	return "addProject";
 }
 
 @RequestMapping("/manageemployees.mvc")
@@ -105,10 +118,6 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 		}
 }
 
-
-
-
-
 @RequestMapping("/newproject.mvc")
 public String goToProject(Model m){
 	return "addProject";
@@ -147,14 +156,7 @@ protected String doNewProject(Model m,HttpServletRequest request, HttpServletRes
 			e.printStackTrace();
 			return "error";
 		}
-	
 }
-
-
-
-
-
-
 
 @RequestMapping(value = "/hello.mvc")
 protected String doPost(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -174,7 +176,8 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 			if(rs.next()){
 				String category = rs.getString("category");
 				if(category.equals("Admin")){
-					return "Admin";
+					m.addAttribute("adminName", rs.getString("name"));
+					return "adminPage";
 				} else if (category.equals("Finance")){
 					return "Finance";
 				}  else if (category.equals("Chris")){

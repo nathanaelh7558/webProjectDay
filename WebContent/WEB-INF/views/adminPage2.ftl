@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -12,16 +13,11 @@
  
 <div id='cssmenu'>
 <ul>
-   <li><a href='adminpage2.mvc'><span>Home</span></a></li>
-   <li><a href='projects.mvc'><span>View Projects</span></a></li>
-   <li><a href='addProject.mvc'><span>Add Project</span></a></li>
-   <li><a href='#'><span>Remove Project</span></a></li>
-   <li><a href='#'><span>Update Project</span></a></li>
+   <li><a href='manageemployees.mvc'><span>Employees</span></a></li>
+   <li><a href='manageprojects.mvc'><span>Projects</span></a></li>
 </ul>
 
 </div>
 
-
-<h2>Projects</h2>
-
  </body>
+</html>
