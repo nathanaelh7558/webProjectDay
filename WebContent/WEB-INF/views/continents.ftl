@@ -5,12 +5,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Continents</h1>
+<h1>Employees</h1>
 <table border=1>
-<tr><th>Continent</th></tr>
-<#list continents as continent>
+<tr><th>Employee Id</th><th>Employee First Name</th><th>Employee Last Name</th><th>Employee Salary</th></tr>
+<#list employees as employee>
 <tr>
-<td><a href='${rc.contextPath}/${continent}/regions.mvc'>${continent}</a></td>
+<td>${employee.employeeId}</td><td>${employee.fname}</td><td>${employee.lname}</td><td>${employee.salary}</td>
 </tr>
 </#list>
 </table>

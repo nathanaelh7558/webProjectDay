@@ -13,9 +13,9 @@ public class WorldController {
 @Autowired
 public IWorldMapper worldMapper;
 
-@RequestMapping("/continentlist.mvc")
+@RequestMapping("/employees.mvc")
 public String continents(Model m){
-	m.addAttribute("continents", worldMapper.getContinents());
+	m.addAttribute("employees", worldMapper.getEmployees());
 	return "continents";
 }
 @RequestMapping("/{cont}/regions.mvc")
