@@ -33,7 +33,7 @@ private DataSource dataSource;
 
 @RequestMapping(value = "/home.mvc", method = RequestMethod.GET)
 public String home(Locale locale, Model model) {
-	return "login";
+	return "logIn";
 }
 
 @RequestMapping("/employees.mvc")
