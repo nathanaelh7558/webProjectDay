@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -84,12 +85,8 @@ public String manageProjects(Model m){
 	return "manageProjects";
 }
 
-//@RequestMapping("/addemployeepage.mvc")
-//public String goToEmployee(Model m){
-//	return "addEmployee";
-//}
 
-@RequestMapping(value = "/addemployee.mvc")
+@RequestMapping(value = "/newEmployee.mvc")
 protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	PrintWriter pw=response.getWriter();
 		response.setContentType("text/html");
@@ -99,6 +96,7 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 		String n4=request.getParameter("dobInput");
 		String n5=request.getParameter("salaryInput");
 		Connection c;
+		if(setTitle(n1)&&setFname(n2)&&setLname(n3)&&setDob(n4)){
 		try {
 				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 				java.util.Date dob = null;
@@ -120,6 +118,9 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "error";
+		}
+		} else {
+			return "manageEmployees2";
 		}
 }
 
@@ -225,16 +226,16 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 				}  else if (category.equals("Chris")){
 					return "Chris";
 				} else {
-					return "error";
+					return "logInError";
 				}
 			} else {
 				System.out.println("Didnt log in");
-				return "error";
+				return "logInError";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "error";
+			return "logInError";
 		}
 	
 }
@@ -242,6 +243,61 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 @RequestMapping("/view_payroll.mvc")
 public String viewPayroll(Model m){
 	return "financeEmployee";
+}
+
+public boolean setSalary(String salary) {
+	if (salary.matches("[0-9]+") && salary.length() > 0) {
+	return true;
+	} else {
+
+		return false;
+	}
+	
+}
+
+public boolean setTitle(String title) {
+	if(title != null && !title.isEmpty()){
+	return true;
+	} else {
+		return false;
+	}
+	
+}
+
+public boolean setLname(String lname) {
+	if(lname != null && !lname.isEmpty()){
+	return true;
+	} else {
+		return false;
+	}
+}
+
+public boolean setFname(String fname) {
+	if(fname != null && !fname.isEmpty()){
+	return true;
+	} else {
+		return false;
+	}
+}
+
+public boolean setDob(String dob) {
+	if(convertDate(dob)){
+	return true;
+	} else {
+		return false;
+	}
+}
+public boolean convertDate(String x){
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	java.util.Date dob2 = null;
+	java.sql.Date sqlDate = null;
+	try {
+		dob2 = formatter.parse(x);
+		sqlDate = new java.sql.Date(dob2.getTime());
+		return true;
+	} catch (ParseException e) {
+	return false;
+	}
 }
 
 	public WorldController() {
