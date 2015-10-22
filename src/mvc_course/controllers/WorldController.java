@@ -42,24 +42,35 @@ public String continents(Model m){
 	m.addAttribute("projects", worldMapper.getProjects());
 	return "continents";
 }
-@RequestMapping("/{cont}/regions.mvc")
-public String regions(Model m, @PathVariable("cont") String continent){
-	m.addAttribute("regions", worldMapper.getRegionsForContinent(continent));
-	m.addAttribute("continent", continent);
-	return "regions";
+@RequestMapping("/newuser.mvc")
+public String goToEmployee(Model m){
+	return "addEmployee";
 }
-@RequestMapping("/{region}/countries.mvc")
-public String countries(Model m, @PathVariable String region){
-	m.addAttribute("countries", worldMapper.getCountriesForRegion(region));
-	m.addAttribute("region", region);
-	return "countries";
+@RequestMapping(value = "/newEmployee.mvc")
+protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter pw=response.getWriter();
+		response.setContentType("text/html");
+		String n1=request.getParameter("titleInput");
+		String n2=request.getParameter("fNameInput");
+		String n3=request.getParameter("lNameInput");
+		String n4=request.getParameter("dobInput");
+		String n5=request.getParameter("salaryInput");
+		Connection c;
+		try {
+			System.out.println("hey");
+			c = dataSource.getConnection();
+			Statement s = c.createStatement();
+			String sqlString = "CALL insertEmployee("+n4+","+n2+","+n3+","+n1+","+n5+");";
+			s.executeUpdate(sqlString);
+		return "user created";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+	
 }
-@RequestMapping("/{CountryCode}/cities.mvc")
-public String cities(Model m, @PathVariable String CountryCode){
-	m.addAttribute("cities", worldMapper.getCitiesForCountry(CountryCode));
-	m.addAttribute("CountryCode", CountryCode);
-	return "cities";
-}
+
 @RequestMapping(value = "/hello.mvc")
 protected String doPost(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	PrintWriter pw=response.getWriter();
@@ -78,7 +89,7 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 			if(rs.next()){
 				String category = rs.getString("category");
 				if(category.equals("Admin")){
-					return "employees.mvc";
+					return "Admin";
 				} else if (category.equals("Finance")){
 					return "Finance";
 				}  else if (category.equals("Chris")){
