@@ -1,3 +1,4 @@
+<!DOCTYPE html> 
 <html>
 <head>
     <meta charset="UTF-8">
@@ -8,12 +9,11 @@
    <script src="script.js"></script>
     <title>MVC Authentication System</title> 
 </head>
- <body>
- 
+<body>
+
 <div id='cssmenu'>
 <ul>
-   <li><a href='adminpage2.mvc'><span>Home</span></a></li>
-   <li><a href='employees.mvc'><span>View Employees</span></a></li>
+   <li><a href='adminpage.mvc'><span>Home</span></a></li>
    <li><a href='addemployeepage.mvc'><span>Add Employee</span></a></li>
    <li><a href='remove_employee_page.mvc'><span>Remove Employee</span></a></li>
    <li><a href='update_employee_details.mvc'><span>Update Details</span></a></li>
@@ -22,20 +22,17 @@
 </div>
 
 <div id=container>
-<form name="newEmployeeForm" action="newEmployee.mvc" method="POST">
+<form name="newEmployeeForm" action="search_employee.mvc" method="POST">
 	<section>
-	<h3>Add a new Employee</h3	>
+	<h3>Remove Employee</h3	>
 	  <ul class="input-list style-1 clearfix">
-	  	<li><input type="text" name="titleInput" placeholder="Title"></li>
-	  	<li><input type="text" name="fNameInput" placeholder="First Name"></li>
-	  	<li><input type="text" name="lNameInput" placeholder="Last Name"></li>
-	  	<li><input type="date" name="dobInput" placeholder="Date of Birth (DD-MM-YYYY)"></li> 	
-	  	<li><input type="number" name="salaryInput" placeholder="Salary"></li>
-	  	<input type="submit" value="Add Employee">
+	  	<li><input type="text" name="fNameInput" placeholder="Type employee's first name"></li>
+	  	<input type="submit" value="Search Employee">
 	  </ul>
 	</section>
 </form>
-
-</container>
-
- </body>
+	<div class="errorMessages">
+	<#if errorMessages??>${errorMessages}<#else></#if>
+	</div>
+</body>
+</html>

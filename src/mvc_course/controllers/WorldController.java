@@ -6,9 +6,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+
 @Controller
 public class WorldController {
 	
@@ -31,6 +35,7 @@ public IWorldMapper worldMapper;
 
 @Autowired
 private DataSource dataSource;
+static Logger log = Logger.getLogger(WorldController.class.getName());
 
 @RequestMapping(value = "/home.mvc", method = RequestMethod.GET)
 public String home(Locale locale, Model model) {
@@ -79,11 +84,11 @@ public String manageProjects(Model m){
 	return "manageProjects";
 }
 
-@RequestMapping("/newuser.mvc")
+@RequestMapping("/addemployeepage.mvc")
 public String goToEmployee(Model m){
 	return "addEmployee";
 }
-@RequestMapping(value = "/newEmployee.mvc")
+@RequestMapping(value = "/addemployee.mvc")
 protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	PrintWriter pw=response.getWriter();
 		response.setContentType("text/html");
@@ -117,6 +122,48 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 			return "error";
 		}
 }
+
+
+@RequestMapping("/remove_employee_page.mvc")
+public String removeEmployee(Model m){
+	return "removeEmployee";
+}
+
+	@RequestMapping("/search_employee.mvc")
+	public String searchEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		  log.info("*********entered*************");
+		String name=request.getParameter("fNameInput");
+		Connection c;
+		try {
+			c = dataSource.getConnection();
+			PreparedStatement stmt = c.prepareStatement("select employeeId, fName from employee where fName =?");
+			log.info(name);
+				      stmt.setString(1,name);
+				      ResultSet rs =  stmt.executeQuery();
+				      if(rs.next()) {
+				    	  while (rs.next()) {
+					    	  log.info("**********************");
+					      }  
+				      } else {
+				    	  m.addAttribute("errorMessages", "No results found, verify name");
+				      }
+				          
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		
+		return "removeEmployee";
+	}
+
+
+@RequestMapping("/update_employee_details.mvc")
+public String updateEmployee(Model m){
+	return "updateEmployee";
+}
+
+
+
 
 @RequestMapping("/newproject.mvc")
 public String goToProject(Model m){
