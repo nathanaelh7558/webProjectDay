@@ -16,6 +16,7 @@ public IWorldMapper worldMapper;
 @RequestMapping("/employees.mvc")
 public String continents(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
+	m.addAttribute("projects", worldMapper.getProjects());
 	return "continents";
 }
 @RequestMapping("/{cont}/regions.mvc")

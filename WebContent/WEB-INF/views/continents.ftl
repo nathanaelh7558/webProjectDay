@@ -14,5 +14,14 @@
 </tr>
 </#list>
 </table>
+<h1>Projects</h1>
+<table border=1>
+<tr><th>Project Id</th><th>Project Name</th><th>Project Start Date</th><th>Project End Date</th></tr>
+<#list projects as project>
+<tr>
+<td>${project.projectId}</td><td>${project.name}</td><td>${project.startDate}</td><td>${project.endDate}</td>
+</tr>
+</#list>
+</table>
 </body>
 </html>
