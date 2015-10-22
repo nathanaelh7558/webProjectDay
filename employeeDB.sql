@@ -115,11 +115,11 @@ CALL fillTables();
 DELIMITER // 
 CREATE PROCEDURE insertEmployee (
 	newDob datetime, newFName varchar(30), newLName varchar(30), 
-	newTitle varchar(20), newPicture blob, newSalary decimal(11,2)
+	newTitle varchar(20), newSalary decimal(11,2)
 	)
 BEGIN
-INSERT INTO employee(dob, fName, lName, title, picture, salary)
-VALUES (newDob, newFName, newLName, newTitle, newPicture, newSalary);
+INSERT INTO employee(dob, fName, lName, title, salary)
+VALUES (newDob, newFName, newLName, newTitle, newSalary);
 end //
 DELIMITER ;
 

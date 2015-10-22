@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import javax.servlet.ServletException;
@@ -18,7 +20,6 @@ import mvc_data.IWorldMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -57,10 +58,21 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 		String n5=request.getParameter("salaryInput");
 		Connection c;
 		try {
-			System.out.println("hey");
+			
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				java.util.Date dob = null;
+				java.sql.Date sqlDate = null;
+				try {
+					dob = formatter.parse(n4);
+					sqlDate = new java.sql.Date(dob.getTime());
+				} catch (ParseException e) {
+						
+				}
+			System.out.println(sqlDate);
 			c = dataSource.getConnection();
 			Statement s = c.createStatement();
-			String sqlString = "CALL insertEmployee("+n4+","+n2+","+n3+","+n1+","+n5+");";
+			String sqlString = "CALL insertEmployee('"+sqlDate+"',\""+n2+"\",\""+n3+"\",\""+n1+"\","+n5+");";
+			System.out.println(sqlString);
 			s.executeUpdate(sqlString);
 		return "user created";
 		} catch (SQLException e) {
