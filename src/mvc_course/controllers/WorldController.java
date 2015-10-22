@@ -41,8 +41,31 @@ public String home(Locale locale, Model model) {
 public String continents(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
 	m.addAttribute("projects", worldMapper.getProjects());
-	return "continents";
+	return "employees";
 }
+
+
+@RequestMapping("/adminpage.mvc")
+public String adminPage(Model m){
+	m.addAttribute("employees", worldMapper.getEmployees());
+	m.addAttribute("projects", worldMapper.getProjects());
+	return "adminPage";
+}
+
+@RequestMapping("/manageemployees.mvc")
+public String manageEmployees(Model m){
+	m.addAttribute("employees", worldMapper.getEmployees());
+	m.addAttribute("projects", worldMapper.getProjects());
+	return "manageEmployees";
+}
+
+@RequestMapping("/manageprojects.mvc")
+public String manageProjects(Model m){
+	m.addAttribute("employees", worldMapper.getEmployees());
+	m.addAttribute("projects", worldMapper.getProjects());
+	return "manageProjects";
+}
+
 @RequestMapping("/newuser.mvc")
 public String goToEmployee(Model m){
 	return "addEmployee";
@@ -80,7 +103,6 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 			e.printStackTrace();
 			return "error";
 		}
-	
 }
 
 
