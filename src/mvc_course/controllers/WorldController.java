@@ -40,26 +40,30 @@ public String home(Locale locale, Model model) {
 public String continents(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
 	m.addAttribute("projects", worldMapper.getProjects());
-	return "continents";
+	return "employees";
 }
-@RequestMapping("/{cont}/regions.mvc")
-public String regions(Model m, @PathVariable("cont") String continent){
-	m.addAttribute("regions", worldMapper.getRegionsForContinent(continent));
-	m.addAttribute("continent", continent);
-	return "regions";
+
+@RequestMapping("/adminpage.mvc")
+public String adminPage(Model m){
+	m.addAttribute("employees", worldMapper.getEmployees());
+	m.addAttribute("projects", worldMapper.getProjects());
+	return "adminPage";
 }
-@RequestMapping("/{region}/countries.mvc")
-public String countries(Model m, @PathVariable String region){
-	m.addAttribute("countries", worldMapper.getCountriesForRegion(region));
-	m.addAttribute("region", region);
-	return "countries";
+
+@RequestMapping("/manageemployees.mvc")
+public String manageEmployees(Model m){
+	m.addAttribute("employees", worldMapper.getEmployees());
+	m.addAttribute("projects", worldMapper.getProjects());
+	return "manageEmployees";
 }
-@RequestMapping("/{CountryCode}/cities.mvc")
-public String cities(Model m, @PathVariable String CountryCode){
-	m.addAttribute("cities", worldMapper.getCitiesForCountry(CountryCode));
-	m.addAttribute("CountryCode", CountryCode);
-	return "cities";
+
+@RequestMapping("/manageprojects.mvc")
+public String manageProjects(Model m){
+	m.addAttribute("employees", worldMapper.getEmployees());
+	m.addAttribute("projects", worldMapper.getProjects());
+	return "manageProjects";
 }
+
 @RequestMapping(value = "/hello.mvc")
 protected String doPost(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	PrintWriter pw=response.getWriter();
