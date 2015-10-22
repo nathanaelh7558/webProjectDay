@@ -73,15 +73,13 @@ public String addProject(Model m){
 @RequestMapping("/manageemployees.mvc")
 public String manageEmployees(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
-	m.addAttribute("projects", worldMapper.getProjects());
 	return "manageEmployees";
 }
 
 @RequestMapping("/manageprojects.mvc")
 public String manageProjects(Model m){
-	m.addAttribute("employees", worldMapper.getEmployees());
 	m.addAttribute("projects", worldMapper.getProjects());
-	return "manageProjects";
+	return "projects";
 }
 
 @RequestMapping("/addemployeepage.mvc")

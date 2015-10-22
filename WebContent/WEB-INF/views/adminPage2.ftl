@@ -13,7 +13,7 @@
  
 <div id='cssmenu'>
 <ul>
-   <li><a href='manageemployees.mvc'><span>Employees</span></a></li>
+   <li><a href='employees.mvc'><span>Employees</span></a></li>
    <li><a href='manageprojects.mvc'><span>Projects</span></a></li>
 </ul>
 
