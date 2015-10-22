@@ -105,6 +105,57 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 		}
 }
 
+
+
+
+
+@RequestMapping("/newproject.mvc")
+public String goToProject(Model m){
+	return "addProject";
+}
+@RequestMapping(value = "/newProject.mvc")
+protected String doNewProject(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter pw=response.getWriter();
+		response.setContentType("text/html");
+		String n1=request.getParameter("pNameInput");
+		String n2=request.getParameter("startDateInput");
+		String n3=request.getParameter("endDateInput");
+		Connection c;
+		try {
+			
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				//java.util.Date dob = null;
+				java.util.Date startDate = null;
+				java.util.Date endDate = null;
+				java.sql.Date sqlDate = null;
+				try {
+					startDate = formatter.parse(n2);
+					endDate = formatter.parse(n3);
+					//sqlDate = new java.sql.Date(dob.getTime());
+				} catch (ParseException e) {
+						
+				}
+			System.out.println(sqlDate);
+			c = dataSource.getConnection();
+			Statement s = c.createStatement();
+			String sqlString = "CALL addProject('"+n1+"',\""+startDate+"\",\""+endDate+"\");";
+			//System.out.println(sqlString);
+			s.executeUpdate(sqlString);
+		return "user created";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+	
+}
+
+
+
+
+
+
+
 @RequestMapping(value = "/hello.mvc")
 protected String doPost(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	PrintWriter pw=response.getWriter();
