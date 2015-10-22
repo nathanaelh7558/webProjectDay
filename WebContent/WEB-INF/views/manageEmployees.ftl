@@ -12,17 +12,18 @@
  
 <div id='cssmenu'>
 <ul>
-   <li><a href='adminpage2.mvc'><span>Home</span></a></li>
+   <li><a href='adminpage.mvc'><span>Home</span></a></li>
    <li><a href='employees.mvc'><span>View Employees</span></a></li>
-   <li><a href='addemployeepage.mvc'><span>Add Employee</span></a></li>
+   <li><a href='manageemployees.mvc'><span>Add Employee</span></a></li>
    <li><a href='remove_employee_page.mvc'><span>Remove Employee</span></a></li>
    <li><a href='update_employee_details.mvc'><span>Update Details</span></a></li>
+   <li><a href='view_payroll.mvc'><span>View Pay roll</span></a></li>
 </ul>
 
 </div>
 
 <div id=container>
-<form name="newEmployeeForm" action="newEmployee.mvc" method="POST">
+<form name="newEmployeeForm" action="addemployee.mvc" method="POST">
 	<section>
 	<h3>Add a new Employee</h3	>
 	  <ul class="input-list style-1 clearfix">

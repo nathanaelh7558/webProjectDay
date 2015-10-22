@@ -14,9 +14,11 @@
 <div id='cssmenu'>
 <ul>
    <li><a href='adminpage.mvc'><span>Home</span></a></li>
-   <li><a href='addemployeepage.mvc'><span>Add Employee</span></a></li>
+   <li><a href='employees.mvc'><span>View Employees</span></a></li>
+   <li><a href='manageemployees.mvc'><span>Add Employee</span></a></li>
    <li><a href='remove_employee_page.mvc'><span>Remove Employee</span></a></li>
    <li><a href='update_employee_details.mvc'><span>Update Details</span></a></li>
+   <li><a href='view_payroll.mvc'><span>View Pay roll</span></a></li>
 </ul>
 
 </div>

@@ -21,18 +21,8 @@
    <li><a href='view_payroll.mvc'><span>View Pay roll</span></a></li>
 </ul>
 </div>
-<h1>Employees</h1>
-<table class = "pure-table pure-table-bordered">
-<thead>
-<tr><th>Employee Id</th><th>Employee First Name</th><th>Employee Last Name</th><th>Employee Salary</th></tr>
-</thead>
-<#list employees as employee>
-<tbody>
-<tr>
-<td>${employee.employeeId}</td><td>${employee.fname}</td><td>${employee.lname}</td><td>${employee.salary}</td>
-</tr>
-</tbody?
-</#list>
-</table>
+
+<h1>Employee created successfully</h1>
+
 </body>
 </html>

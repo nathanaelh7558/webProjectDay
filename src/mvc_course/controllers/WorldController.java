@@ -73,19 +73,22 @@ public String addProject(Model m){
 @RequestMapping("/manageemployees.mvc")
 public String manageEmployees(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
+	m.addAttribute("projects", worldMapper.getProjects());
 	return "manageEmployees";
 }
 
 @RequestMapping("/manageprojects.mvc")
 public String manageProjects(Model m){
+	m.addAttribute("employees", worldMapper.getEmployees());
 	m.addAttribute("projects", worldMapper.getProjects());
-	return "projects";
+	return "manageProjects";
 }
 
-@RequestMapping("/addemployeepage.mvc")
-public String goToEmployee(Model m){
-	return "addEmployee";
-}
+//@RequestMapping("/addemployeepage.mvc")
+//public String goToEmployee(Model m){
+//	return "addEmployee";
+//}
+
 @RequestMapping(value = "/addemployee.mvc")
 protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	PrintWriter pw=response.getWriter();
@@ -97,7 +100,6 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 		String n5=request.getParameter("salaryInput");
 		Connection c;
 		try {
-			
 				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 				java.util.Date dob = null;
 				java.sql.Date sqlDate = null;
@@ -113,14 +115,13 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 			String sqlString = "CALL insertEmployee('"+sqlDate+"',\""+n2+"\",\""+n3+"\",\""+n1+"\","+n5+");";
 			System.out.println(sqlString);
 			s.executeUpdate(sqlString);
-		return "user created";
+		return "userCreated";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "error";
 		}
 }
-
 
 @RequestMapping("/remove_employee_page.mvc")
 public String removeEmployee(Model m){
@@ -129,7 +130,6 @@ public String removeEmployee(Model m){
 
 	@RequestMapping("/search_employee.mvc")
 	public String searchEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  log.info("*********entered*************");
 		String name=request.getParameter("fNameInput");
 		Connection c;
 		try {
@@ -159,8 +159,6 @@ public String removeEmployee(Model m){
 public String updateEmployee(Model m){
 	return "updateEmployee";
 }
-
-
 
 
 @RequestMapping("/newproject.mvc")
@@ -211,7 +209,6 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 		String n3=request.getParameter("usernameInput");
 		Connection c;
 		try {
-			System.out.println("hey");
 			System.out.println(n2);
 			System.out.println(n3);
 			c = dataSource.getConnection();
@@ -241,6 +238,12 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 		}
 	
 }
+
+@RequestMapping("/view_payroll.mvc")
+public String viewPayroll(Model m){
+	return "financeEmployee";
+}
+
 	public WorldController() {
 		// TODO Auto-generated constructor stub
 	}
