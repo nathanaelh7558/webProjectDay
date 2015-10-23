@@ -12,9 +12,8 @@
  
 <div id='cssmenu'>
 <ul>
-   <li><a href='adminpage.mvc'><span>Home</span></a></li>
    <li><a href='employees.mvc'><span>Employees</span></a></li>
-   <li><a href='manageprojects.mvc'><span>Projects</span></a></li>
+   <li><a href='viewProjectsWithoutEmployees.mvc'><span>Projects with no employees</span></a></li>
 </ul>
 
 </div>
