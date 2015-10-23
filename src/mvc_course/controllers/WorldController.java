@@ -339,7 +339,7 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 				} else if (category.equals("Finance")){
 					return "Finance";
 				}  else if (category.equals("Chris")){
-					return "Chris";
+					return "chrisPage";
 				} else {
 					return "logInError";
 				}
