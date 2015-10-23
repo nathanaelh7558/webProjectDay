@@ -122,7 +122,7 @@ CREATE PROCEDURE insertSalesEmployee (
 	TR decimal(10,2)
 	)
 BEGIN
-INSERT INTO salesEmp(employeeId, commissionRate, totalAnnualRevenue)
+INSERT INTO salesEmp(employeeId, comissionRate, totalAnnualRevenue)
 VALUES (ID, CR, TR);
 end //
 DELIMITER ;
