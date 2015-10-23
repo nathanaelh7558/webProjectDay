@@ -337,7 +337,8 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 					m.addAttribute("adminName", rs.getString("name"));
 					return "adminPage";
 				} else if (category.equals("Finance")){
-					return "Finance";
+					System.out.println("go here");
+					return "financeEmployee";
 				}  else if (category.equals("Chris")){
 					return "Chris";
 				} else {
