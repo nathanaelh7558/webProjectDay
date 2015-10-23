@@ -20,7 +20,7 @@
    <li><a href='update_employee_details.mvc'><span>Update Details</span></a></li>
    <li><a href='view_payroll.mvc'><span>View Pay roll</span></a></li>
 </ul>
-
+ 
 </div>
 
 <h1>Pay roll</h1>
