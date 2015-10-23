@@ -310,12 +310,12 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE payRoll () 
 BEGIN 
-SELECT @temp := employee.employeeId AS 'Employee Id', 
-concat(fName, ' ', lName) AS 'Employee Name', 
-if(@temp IN(SELECT employeeId FROM salesEmployee), 
-(SELECT CONCAT('£',ROUND(Salary+((totalAnnualRevenue/100)*commissionRate)))
-from employee JOIN employee_sales ON employee.employeeId = salesEmployee.employeeId ), 
-CONCAT('£',ROUND(employee.salary))) AS 'Total Amount Due'
+SELECT @temp := employee.employeeId AS 'EmployeeId', 
+concat(fName, ' ', lName) AS 'EmployeeName', 
+if(@temp IN(SELECT employeeId FROM salesEmp), 
+(SELECT CONCAT('£',ROUND(Salary+((totalAnnualRevenue/100)*comissionRate)))
+from employee JOIN salesEmp ON employee.employeeId = salesEmp.employeeId ), 
+CONCAT('£',ROUND(employee.salary))) AS 'TotalAmountDue'
 FROM employee; 
 END //
 DELIMITER ;

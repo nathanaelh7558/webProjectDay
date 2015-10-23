@@ -22,6 +22,17 @@
 </div>
 
 <h1>Pay roll</h1>
-	
+<table class = "pure-table pure-table-bordered">
+<thead>
+<tr><th>Employee Id</th><th>Employee Name</th><th>Employee Amount Due</th></tr>
+</thead>
+<#list payrolls as payroll>
+<tbody>
+<tr>
+<td>${payroll.employeeId}</td><td>${payroll.employeeName}</td><td>${payroll.totalAmountDue}</td>
+</tr>
+</tbody>
+</#list>
+</table>
 </body>
 </html>

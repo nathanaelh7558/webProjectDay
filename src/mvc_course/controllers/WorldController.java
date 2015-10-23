@@ -441,6 +441,8 @@ public String homeFinanceEmpoyee(Model m){
 
 @RequestMapping("/view_pay_roll.mvc")
 public String viewPayroll(Model m){
+	System.out.println(worldMapper.getPayroll());
+	m.addAttribute("payrolls", worldMapper.getPayroll());
 	return "viewPayroll";
 }
 

@@ -27,6 +27,8 @@ Employee updateEmployee(long ID);
 @Select(GET_P_BY_ID)
 Project updateProject(long ID);
 
+@Select("CALL payRoll();")
+List<payRoll> getPayroll();
 @Select("SELECT projectId, name, startDate, endDate FROM project ORDER BY 1;")
 List<Project> getProjects();
 
