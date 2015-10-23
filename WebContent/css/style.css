@@ -153,6 +153,19 @@ input[type="text"]:focus {
   outline: none;
 }
 
+
+input[type="password"] {
+  display: block;
+  margin: 0;
+  width: 500px;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+}
+
+
 input[type="number"] {
   display: block;
   margin: 0;
@@ -184,7 +197,7 @@ li {
 	margin-bottom: 20px;
 }
 
-.style-1 input[type="text"], input[type="number"], input[type="date"] {
+.style-1 input[type="text"], input[type="number"], input[type="date"], input[type="password"] {
   padding: 10px;
   border: solid 1px #dcdcdc;
   transition: box-shadow 0.3s, border 0.3s;
@@ -208,7 +221,7 @@ li {
 input[type="submit"]{
   display: block;
   margin: 0;
-  width: 500px;
+  width: 520px;
   font-family: sans-serif;
   font-size: 25px;
   appearance: none;
