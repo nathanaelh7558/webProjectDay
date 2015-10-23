@@ -22,14 +22,15 @@
 </div>
    
    <div id=container>
-<form name="newProjectForm" action="newProject.mvc" method="POST">
+<form name="newProjectForm" action="doUpdateProject.mvc" method="POST">
 	<section>
-	<h3>Add Project</h3	>
+	<h3>Update Project</h3	>
 	  <ul class="input-list style-1 clearfix">
+	  <li><input type="text" name="pIdInput" placeholder="project Id" value=${project.projectId}></li>
 	  	<li><input type="text" name="pNameInput" placeholder="project name" value=${project.name}></li>
-	  	<li><input type="text" name="startDateInput" placeholder="Start Date(DD-MM-YYYY)" value=${project.startDate}></li>
-	  	<li><input type="text" name="endDateInput" placeholder="End Date(DD-MM-YYYY)"value=${project.endDate}></li>	  	
-	  	<input type="submit" value="Create Project">
+	  	<li><input type="text" name="startDateInput" placeholder="Start Date(DD-MM-YYYY)" value=${project.startDate?date}></li>
+	  	<li><input type="text" name="endDateInput" placeholder="End Date(DD-MM-YYYY)"value=${project.endDate?date}></li>	  	
+	  	<input type="submit" value="Update Project">
 	  </ul>
 	</section>
 </form>
