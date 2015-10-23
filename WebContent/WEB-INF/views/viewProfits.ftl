@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,16 +9,19 @@
    <script src="script.js"></script>
     <title>MVC Authentication System</title> 
 </head>
- <body>
- 
-<div id='cssmenu'>
-<ul>
-   <li><a href='adminpage.mvc'><span>Home</span></a></li>
-   <li><a href='employees.mvc'><span>Employees</span></a></li>
-   <li><a href='manageprojects.mvc'><span>Projects</span></a></li>
-</ul>
+<body>
 
+<div id='cssmenu'>
+
+<ul>
+   <li><a href='home_finance_employee.mvc'><span>Home</span></a></li>
+   <li><a href='view_pay_roll.mvc'><span>View Pay roll</span></a></li>
+   <li><a href='profits.mvc'><span>View Profits</span></a></li>
+</ul>
+ 
 </div>
 
- </body>
+<h1>Profits</h1>
+	
+</body>
 </html>
