@@ -9,7 +9,8 @@ import org.apache.ibatis.annotations.Select;
 public interface IWorldMapper {
 	String GET_PERSON_BY_ID = "SELECT employeeId,dob,fname, lname, title, salary FROM employee WHERE fName = #{personId, jdbcType=VARCHAR} ORDER BY 1;";
 	String GET_PROJECT_BY_ID = "SELECT projectId,name,startDate, endDate FROM project WHERE name = #{personId, jdbcType=VARCHAR} ORDER BY 1;";
-	
+	String GET_P_BY_ID = "SELECT projectId,name,startDate, endDate FROM project WHERE projectId = #{ID};";
+
 	String GET_EMP_BY_ID = "SELECT employeeId,dob,fname, lname, title, salary FROM employee WHERE employeeId = #{ID};";
 
 @Select("SELECT employeeId,dob,fname, lname, title, salary FROM employee ORDER BY 1;")
@@ -23,7 +24,8 @@ List<Project> searchProjects(String personId);
 
 @Select(GET_EMP_BY_ID)
 Employee updateEmployee(long ID);
-
+@Select(GET_P_BY_ID)
+Project updateProject(long ID);
 
 @Select("SELECT projectId, name, startDate, endDate FROM project ORDER BY 1;")
 List<Project> getProjects();
