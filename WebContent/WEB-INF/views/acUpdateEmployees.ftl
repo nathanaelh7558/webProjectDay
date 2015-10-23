@@ -1,4 +1,3 @@
-<!DOCTYPE html> 
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,8 +8,8 @@
    <script src="script.js"></script>
     <title>MVC Authentication System</title> 
 </head>
-<body>
-
+ <body>
+ 
 <div id='cssmenu'>
 <ul>
    <li><a href='adminpage2.mvc'><span>Home</span></a></li>
@@ -23,18 +22,21 @@
 </div>
 
 <div id=container>
-<form name="newEmployeeForm" action="search_employee2.mvc" method="POST">
+<form name="newEmployeeForm" action="newUpdateEmployee.mvc" method="POST">
 	<section>
 	<h3>Update Employee</h3	>
 	  <ul class="input-list style-1 clearfix">
-	  	<li><input type="text" name="fNameInput" placeholder="Type employee's first name"></li>
-	  	<input type="submit" value="Search Employee">
+	  <li><input type="text" name="empIdInput" placeholder="Title" value = ${employee.employeeId}></li>
+	  	<li><input type="text" name="titleInput" placeholder="Title" value = ${employee.title}></li>
+	  	<li><input type="text" name="fNameInput" placeholder="First Name" value = ${employee.fname}></li>
+	  	<li><input type="text" name="lNameInput" placeholder="Last Name" value = ${employee.lname}></li>
+	  	<li><input type="date" name="dobInput" placeholder="Date of Birth (DD-MM-YYYY)" value = ${employee.dob?datetime}></li> 	
+	  	<li><input type="number" name="salaryInput" placeholder="Salary" value = ${employee.salary?string.number}></li>
+	  	<input type="submit" value="Update">
 	  </ul>
 	</section>
 </form>
-<div class="errorMessages">
-	<#if errorMessages??>${errorMessages}<#else></#if>
-	</div>
 
-</body>
-</html>
+</container>
+
+ </body>

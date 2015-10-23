@@ -115,11 +115,11 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 			String sqlString = "CALL insertEmployee('"+sqlDate+"',\""+n2+"\",\""+n3+"\",\""+n1+"\","+n5+");";
 			System.out.println(sqlString);
 			s.executeUpdate(sqlString);
-		return "user created";
+		return "newUserSuccess";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "error";
+			return "manageEmployees2";
 		}
 		} else {
 			return "manageEmployees2";
@@ -131,6 +131,22 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 public String removeEmployee(Model m){
 	return "removeEmployee";
 }
+@RequestMapping("/delete_employee.mvc")
+public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	System.out.println("wassssapppp");
+	String ID=request.getParameter("empId");
+	Connection c;
+	try {
+		c = dataSource.getConnection();
+		Statement s = c.createStatement();
+		String sqlString = "CALL removeEmployee("+ID+");";
+		s.executeUpdate(sqlString);			      
+		return "employees.mvc";	     
+	} catch (Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
+}
 
 	@RequestMapping("/search_employee.mvc")
 	public String searchEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -138,15 +154,16 @@ public String removeEmployee(Model m){
 		String name=request.getParameter("fNameInput");
 		Connection c;
 		try {
-			c = dataSource.getConnection();
-			PreparedStatement stmt = c.prepareStatement("select employeeId, fName from employee where fName =?");
+			c = dataSource.getConnection();	
 			log.info(name);
-				      stmt.setString(1,name);
-				      ResultSet rs =  stmt.executeQuery();
+			c = dataSource.getConnection();
+			Statement s = c.createStatement();
+			String sqlString = "SELECT fName FROM employee WHERE fName LIKE '%"+name+"%' ORDER BY 1;";
+			ResultSet rs = s.executeQuery(sqlString);			      
 				      if(rs.next()) {
-				    	  while (rs.next()) {
-					    	  log.info("**********************");
-					      }  
+				    	  System.out.println("GOINGIN HERE");
+				    	  m.addAttribute("employees", worldMapper.searchEmployees(name));
+				    		return "removeEmployeeSearch";  
 				      } else {
 				    	  m.addAttribute("errorMessages", "No results found, verify name");
 				      }
@@ -158,6 +175,33 @@ public String removeEmployee(Model m){
 		
 		return "removeEmployee";
 	}
+	@RequestMapping("/search_employee2.mvc")
+	public String searchEmployee2(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		  log.info("*********entered*************");
+		String name=request.getParameter("fNameInput");
+		Connection c;
+		try {
+			c = dataSource.getConnection();	
+			log.info(name);
+			c = dataSource.getConnection();
+			Statement s = c.createStatement();
+			String sqlString = "SELECT fName FROM employee WHERE fName LIKE '%"+name+"%' ORDER BY 1;";
+			ResultSet rs = s.executeQuery(sqlString);			      
+				      if(rs.next()) {
+				    	  System.out.println("GOINGIN HERE");
+				    	  m.addAttribute("employees", worldMapper.searchEmployees(name));
+				    		return "updateEmployeeSearch";  
+				      } else {
+				    	  m.addAttribute("errorMessages", "No results found, verify name");
+				      }
+				          
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		
+		return "update_employee_details.mvc";
+	}
 
 
 @RequestMapping("/update_employee_details.mvc")
@@ -165,8 +209,53 @@ public String updateEmployee(Model m){
 	return "updateEmployee";
 }
 
-
-
+@RequestMapping("/acUpdate_employee.mvc")
+public String acUpdateEmployee(Model m, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	String ID=request.getParameter("empId");
+	long temp = Long.parseLong(ID);
+	m.addAttribute("employee", worldMapper.updateEmployee(temp));
+	return "acUpdateEmployees";
+}
+@RequestMapping(value = "/newUpdateEmployee.mvc")
+protected String doNewUpdateEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter pw=response.getWriter();
+		response.setContentType("text/html");
+		String n0=request.getParameter("empIdInput");
+		String n1=request.getParameter("titleInput");
+		String n2=request.getParameter("fNameInput");
+		String n3=request.getParameter("lNameInput");
+		String n4=request.getParameter("dobInput");
+		String n5=request.getParameter("salaryInput");
+		Connection c;
+		if(setTitle(n1)&&setFname(n2)&&setLname(n3)&&setDob(n4)){
+		try {
+			
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				java.util.Date dob = null;
+				java.sql.Date sqlDate = null;
+				try {
+					dob = formatter.parse(n4);
+					sqlDate = new java.sql.Date(dob.getTime());
+				} catch (ParseException e) {
+						
+				}
+			System.out.println(sqlDate);
+			c = dataSource.getConnection();
+			Statement s = c.createStatement();
+			int id= Integer.parseInt(n0);
+			String sqlString = "CALL updateEmployee("+id+", '"+sqlDate+"',\""+n2+"\",\""+n3+"\",\""+n1+"\","+n5+");";
+			System.out.println(sqlString);
+			s.executeUpdate(sqlString);
+		return "newUserSuccess";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "#";
+		}
+		} else {
+			return "#";
+		}
+}
 
 @RequestMapping("/newproject.mvc")
 public String goToProject(Model m){

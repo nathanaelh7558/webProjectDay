@@ -6,10 +6,20 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-
 public interface IWorldMapper {
-@Select("SELECT employeeId,dob,fname, lname, title, salary FROM employee ORDER BY 1;")
+	String GET_PERSON_BY_ID = "SELECT employeeId,dob,fname, lname, title, salary FROM employee WHERE fName = #{personId, jdbcType=VARCHAR} ORDER BY 1;";
+	String GET_EMP_BY_ID = "SELECT employeeId,dob,fname, lname, title, salary FROM employee WHERE employeeId = #{ID};";
+	String DELETE_PERSON    = "DELETE FROM person WHERE id = #{personId, jdbcType=VARCHAR}";
+
+	@Select("SELECT employeeId,dob,fname, lname, title, salary FROM employee ORDER BY 1;")
 List<Employee> getEmployees();
+
+@Select(GET_PERSON_BY_ID)
+List<Employee> searchEmployees(String personId);
+
+@Select(GET_EMP_BY_ID)
+Employee updateEmployee(long ID);
+
 @Select("SELECT projectId, name, startDate, endDate FROM project ORDER BY 1;")
 List<Project> getProjects();
 @Select("SELECT DISTINCT Region, Continent " + "FROM Country WHERE Continent =#{continent}" + "ORDER BY 1")

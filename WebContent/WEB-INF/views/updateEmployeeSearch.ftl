@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
+         	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link href="css/style.css" rel="stylesheet" type="text/css" />   
    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
    <script src="script.js"></script>
@@ -23,18 +24,27 @@
 </div>
 
 <div id=container>
-<form name="newEmployeeForm" action="search_employee2.mvc" method="POST">
+<form name="newEmployeeForm" action="acUpdate_employee.mvc" method="POST">
 	<section>
 	<h3>Update Employee</h3	>
 	  <ul class="input-list style-1 clearfix">
-	  	<li><input type="text" name="fNameInput" placeholder="Type employee's first name"></li>
+	  	<li><input type="text" name="empId" placeholder="Type employee's id to be updated"></li>
 	  	<input type="submit" value="Search Employee">
 	  </ul>
 	</section>
 </form>
-<div class="errorMessages">
-	<#if errorMessages??>${errorMessages}<#else></#if>
-	</div>
+	<table class = "pure-table pure-table-bordered">
+<thead>
+<tr><th>Employee Id</th><th>Employee First Name</th><th>Employee Last Name</th><th>Employee Salary</th></tr>
+</thead>
+<#list employees as employee>
+<tbody>
+<tr>
+<td>${employee.employeeId}</td><td>${employee.fname}</td><td>${employee.lname}</td><td>${employee.salary}</td>
+</tr>
+</tbody>
+</#list>
+</table>
 
 </body>
 </html>

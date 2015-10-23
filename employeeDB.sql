@@ -4,15 +4,6 @@ CREATE DATABASE EmpDB;
 
 USE EmpDB;
 
-DROP USER 'chrisr'@'localhost';
-DROP USER 'admin'@'localhost';
-DROP USER 'finance'@'localhost';
-
-CREATE USER 'chrisr'@'localhost' IDENTIFIED BY 'chrisrocks';
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
-CREATE USER 'finance'@'localhost' IDENTIFIED BY 'dolla';
-
-FLUSH PRIVILEGES;
 
 CREATE TABLE employee (  
 	employeeId int(11) PRIMARY KEY AUTO_INCREMENT, 
@@ -170,7 +161,6 @@ CREATE Procedure updateEmployee(
 	newFName varchar(30),
 	newLName varchar(30),
 	newTitle varchar(30),
-	newPicture blob,
 	newSalary decimal(11,2)	
 	)
 BEGIN
@@ -181,7 +171,6 @@ SET
 	fName = newFName,
 	lName = newLName,
 	title = newTitle,
-	picture = newPicture,
 	salary = newSalary
 WHERE 
 	employeeId = ID;

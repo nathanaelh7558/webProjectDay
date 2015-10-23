@@ -16,8 +16,8 @@
    <li><a href='adminpage2.mvc'><span>Home</span></a></li>
    <li><a href='employees.mvc'><span>View Employees</span></a></li>
    <li><a href='manageemployees.mvc'><span>Add Employee</span></a></li>
-   <li><a href='#'><span>Remove Employee</span></a></li>
-   <li><a href='#'><span>Update Details</span></a></li>
+   <li><a href='remove_employee_page.mvc'><span>Remove Employee</span></a></li>
+   <li><a href='update_employee_details.mvc'><span>Update Details</span></a></li>
 </ul>
 </div>
 <h1>Employees</h1>
@@ -30,7 +30,7 @@
 <tr>
 <td>${employee.employeeId}</td><td>${employee.fname}</td><td>${employee.lname}</td><td>${employee.salary}</td>
 </tr>
-</tbody?
+</tbody>
 </#list>
 </table>
 </body>
