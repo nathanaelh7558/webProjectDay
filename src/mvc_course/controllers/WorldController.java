@@ -370,6 +370,16 @@ public String viewProfits(Model m){
 	return "viewProfits";
 }
 
+@RequestMapping("/assing_employee.mvc")
+public String assignEmployee(Model m){
+	return "assignEmployee";
+}
+
+@RequestMapping("/assign_employee_controller.mvc")
+public String assignEmployeeToProject(Model m){
+	return "assignEmployee";
+}
+
 public boolean setSalary(String salary) {
 	if (salary.matches("[0-9]+") && salary.length() > 0) {
 	return true;
@@ -377,7 +387,6 @@ public boolean setSalary(String salary) {
 
 		return false;
 	}
-	
 }
 
 public boolean setTitle(String title) {
