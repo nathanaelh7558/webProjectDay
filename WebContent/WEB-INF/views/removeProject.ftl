@@ -14,22 +14,21 @@
 <div id='cssmenu'>
 <ul>
    <li><a href='adminpage2.mvc'><span>Home</span></a></li>
-      <li><a href='employees.mvc'><span>View Employees</span></a></li>
-   <li><a href='manageemployees.mvc'><span>Add Employee</span></a></li>
-   <li><a href='remove_employee_page.mvc'><span>Remove Employee</span></a></li>
-   <li><a href='update_employee_details.mvc'><span>Update Details</span></a></li>
-   <li><a href='view_payroll.mvc'><span>View Pay roll</span></a></li>
+   <li><a href='projects.mvc'><span>View Projects</span></a></li>
+   <li><a href='addProject.mvc'><span>Add Project</span></a></li>
+   <li><a href='removeProject.mvc'><span>Remove Project</span></a></li>
+   <li><a href='#'><span>Update Project</span></a></li>
 </ul>
 
 </div>
 
 <div id=container>
-<form name="newEmployeeForm" action="search_employee.mvc" method="POST">
+<form name="newEmployeeForm" action="search_project.mvc" method="POST">
 	<section>
-	<h3>Remove Employee</h3	>
+	<h3>Remove Project</h3	>
 	  <ul class="input-list style-1 clearfix">
-	  	<li><input type="text" name="fNameInput" placeholder="Type employee's first name"></li>
-	  	<input type="submit" value="Search Employee">
+	  	<li><input type="text" name="fNameInput" placeholder="Type project name"></li>
+	  	<input type="submit" value="Search Projects">
 	  </ul>
 	</section>
 </form>

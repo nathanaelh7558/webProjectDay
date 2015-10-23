@@ -15,8 +15,8 @@
    <li><a href='adminpage2.mvc'><span>Home</span></a></li>
    <li><a href='projects.mvc'><span>View Projects</span></a></li>
    <li><a href='addProject.mvc'><span>Add Project</span></a></li>
-   <li><a href='#'><span>Remove Project</span></a></li>
-   <li><a href='#'><span>Update Project</span></a></li>
+   <li><a href='removeProject.mvc'><span>Remove Project</span></a></li>
+   <li><a href='updateProject.mvc'><span>Update Project</span></a></li>
 </ul>
 
 </div>
@@ -26,9 +26,9 @@
 	<section>
 	<h3>Add Project</h3	>
 	  <ul class="input-list style-1 clearfix">
-	  	<li><input type="text" name="pNameInput" placeholder="project name"></li>
-	  	<li><input type="text" name="startDateInput" placeholder="Start Date(DD-MM-YYYY)"></li>
-	  	<li><input type="text" name="endDateInput" placeholder="End Date(DD-MM-YYYY)"></li>	  	
+	  	<li><input type="text" name="pNameInput" placeholder="project name" value=${project.name}></li>
+	  	<li><input type="text" name="startDateInput" placeholder="Start Date(DD-MM-YYYY)" value=${project.startDate}></li>
+	  	<li><input type="text" name="endDateInput" placeholder="End Date(DD-MM-YYYY)"value=${project.endDate}></li>	  	
 	  	<input type="submit" value="Create Project">
 	  </ul>
 	</section>

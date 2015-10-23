@@ -15,7 +15,7 @@
    <li><a href='adminpage2.mvc'><span>Home</span></a></li>
    <li><a href='projects.mvc'><span>View Projects</span></a></li>
    <li><a href='addProject.mvc'><span>Add Project</span></a></li>
-   <li><a href='#'><span>Remove Project</span></a></li>
+   <li><a href='removeProject.mvc'><span>Remove Project</span></a></li>
    <li><a href='#'><span>Update Project</span></a></li>
 </ul>
 

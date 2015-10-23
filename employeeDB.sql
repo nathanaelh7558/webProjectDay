@@ -320,3 +320,24 @@ FROM employee;
 END //
 DELIMITER ;
 
+DELIMITER // 
+CREATE PROCEDURE showEmployeesWithoutProjects()
+BEGIN
+	SELECT employee.employee_id, employee.DateOfBirth,
+		employee.F_name, employee.L_name, employee.Title, employee.Picture, employee.Salary
+	FROM employee LEFT JOIN project_staff
+	ON employee.employee_id = project_staff.employee_id
+	WHERE project_staff.project_id IS NULL;
+end //
+DELIMITER ;
+
+DELIMITER // 
+CREATE PROCEDURE showProjectsWithoutEmployees()
+BEGIN
+	SELECT project.project_id, project.name, project.start_date, project.end_date
+	FROM project LEFT JOIN project_staff
+	ON project.project_id = project_staff.project_id
+	WHERE project_staff.project_id IS NULL;
+end //
+DELIMITER ;
+
