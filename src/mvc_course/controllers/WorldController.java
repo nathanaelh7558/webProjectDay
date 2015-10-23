@@ -67,26 +67,24 @@ public String adminPage2(Model m){
 }
 @RequestMapping("/addProject.mvc")
 public String addProject(Model m){
-	
 	return "addProject";
 }
 
 @RequestMapping("/manageemployees.mvc")
 public String manageEmployees(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
+	m.addAttribute("projects", worldMapper.getProjects());
 	return "manageEmployees";
 }
 
 @RequestMapping("/manageprojects.mvc")
 public String manageProjects(Model m){
+	m.addAttribute("employees", worldMapper.getEmployees());
 	m.addAttribute("projects", worldMapper.getProjects());
-	return "projects";
+	return "manageProjects";
 }
 
-@RequestMapping("/addemployeepage.mvc")
-public String goToEmployee(Model m){
-	return "addEmployee";
-}
+
 @RequestMapping(value = "/newEmployee.mvc")
 protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	PrintWriter pw=response.getWriter();
@@ -99,7 +97,6 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 		Connection c;
 		if(setTitle(n1)&&setFname(n2)&&setLname(n3)&&setDob(n4)){
 		try {
-			
 				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 				java.util.Date dob = null;
 				java.sql.Date sqlDate = null;
@@ -116,6 +113,7 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 			System.out.println(sqlString);
 			s.executeUpdate(sqlString);
 		return "newUserSuccess";
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,7 +123,6 @@ protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletRe
 			return "manageEmployees2";
 		}
 }
-
 
 @RequestMapping("/remove_employee_page.mvc")
 public String removeEmployee(Model m){
@@ -141,7 +138,7 @@ public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResp
 		Statement s = c.createStatement();
 		String sqlString = "CALL removeEmployee("+ID+");";
 		s.executeUpdate(sqlString);			      
-		return "employees.mvc";	     
+		return "adminPage2";	     
 	} catch (Exception e) {
 		e.printStackTrace();
 		return "error";
@@ -150,7 +147,6 @@ public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResp
 
 	@RequestMapping("/search_employee.mvc")
 	public String searchEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  log.info("*********entered*************");
 		String name=request.getParameter("fNameInput");
 		Connection c;
 		try {
@@ -173,7 +169,29 @@ public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResp
 			return "error";
 		}
 		
+		m.addAttribute("removeEmployee", worldMapper.getEmployeeByName(name));
 		return "removeEmployee";
+//		Connection c;
+//		try {
+//			c = dataSource.getConnection();
+//			PreparedStatement stmt = c.prepareStatement("select employeeId, fName from employee where fName =?");
+//			log.info(name);
+//				      stmt.setString(1,name);
+//				      ResultSet rs =  stmt.executeQuery();
+//				      if(rs.next()) {
+//				    	  while (rs.next()) {
+//					    	  log.info("**********************");
+//					      }  
+//				      } else {
+//				    	  m.addAttribute("errorMessages", "No results found, verify name");
+//				      }
+//				          
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return "error";
+//		}
+//		
+//		return "removeEmployee";
 	}
 	@RequestMapping("/search_employee2.mvc")
 	public String searchEmployee2(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -193,6 +211,7 @@ public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResp
 				    		return "updateEmployeeSearch";  
 				      } else {
 				    	  m.addAttribute("errorMessages", "No results found, verify name");
+				    	  return "updateEmployee";
 				      }
 				          
 		} catch (Exception e) {
@@ -200,7 +219,7 @@ public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResp
 			return "error";
 		}
 		
-		return "update_employee_details.mvc";
+		
 	}
 
 
@@ -257,6 +276,7 @@ protected String doNewUpdateEmployee(Model m,HttpServletRequest request, HttpSer
 		}
 }
 
+
 @RequestMapping("/newproject.mvc")
 public String goToProject(Model m){
 	return "addProject";
@@ -305,7 +325,6 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 		String n3=request.getParameter("usernameInput");
 		Connection c;
 		try {
-			System.out.println("hey");
 			System.out.println(n2);
 			System.out.println(n3);
 			c = dataSource.getConnection();
@@ -335,6 +354,12 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 		}
 	
 }
+
+@RequestMapping("/view_payroll.mvc")
+public String viewPayroll(Model m){
+	return "financeEmployee";
+}
+
 public boolean setSalary(String salary) {
 	if (salary.matches("[0-9]+") && salary.length() > 0) {
 	return true;

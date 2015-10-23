@@ -11,6 +11,9 @@
 </head>
 
 <body>
+<div class="logo">
+<img src="images/logo.png">
+</div>
 <div id = container>
 <form name="user" action="hello.mvc" method="post">
 <section>

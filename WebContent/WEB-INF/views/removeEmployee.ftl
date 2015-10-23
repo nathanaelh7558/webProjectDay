@@ -15,9 +15,10 @@
 <ul>
    <li><a href='adminpage2.mvc'><span>Home</span></a></li>
       <li><a href='employees.mvc'><span>View Employees</span></a></li>
-   <li><a href='addemployeepage.mvc'><span>Add Employee</span></a></li>
+   <li><a href='manageemployees.mvc'><span>Add Employee</span></a></li>
    <li><a href='remove_employee_page.mvc'><span>Remove Employee</span></a></li>
    <li><a href='update_employee_details.mvc'><span>Update Details</span></a></li>
+   <li><a href='view_payroll.mvc'><span>View Pay roll</span></a></li>
 </ul>
 
 </div>
@@ -35,5 +36,28 @@
 	<div class="errorMessages">
 	<#if errorMessages??>${errorMessages}<#else></#if>
 	</div>
+</div>
+
+<br>
+<br>
+<br>
+<#if removeEmployee??>		
+	<table class = "pure-table pure-table-bordered">
+	<thead>
+	<tr><th>Employee Id</th><th>Employee First Name</th></tr>
+	</thead>
+	<#list removeEmployee as employee>
+	<tbody>
+		<tr>
+		<td>${employee.employeeId}</td>
+		<td>${employee.fname}</td>
+		</tr>
+	</tbody?>
+	</#list>
+	</table>
+<#else></#if>
+	
+	
 </body>
+
 </html>

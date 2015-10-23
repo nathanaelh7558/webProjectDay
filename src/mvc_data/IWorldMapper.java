@@ -9,9 +9,8 @@ import org.apache.ibatis.annotations.Select;
 public interface IWorldMapper {
 	String GET_PERSON_BY_ID = "SELECT employeeId,dob,fname, lname, title, salary FROM employee WHERE fName = #{personId, jdbcType=VARCHAR} ORDER BY 1;";
 	String GET_EMP_BY_ID = "SELECT employeeId,dob,fname, lname, title, salary FROM employee WHERE employeeId = #{ID};";
-	String DELETE_PERSON    = "DELETE FROM person WHERE id = #{personId, jdbcType=VARCHAR}";
 
-	@Select("SELECT employeeId,dob,fname, lname, title, salary FROM employee ORDER BY 1;")
+@Select("SELECT employeeId,dob,fname, lname, title, salary FROM employee ORDER BY 1;")
 List<Employee> getEmployees();
 
 @Select(GET_PERSON_BY_ID)
@@ -20,12 +19,19 @@ List<Employee> searchEmployees(String personId);
 @Select(GET_EMP_BY_ID)
 Employee updateEmployee(long ID);
 
+
 @Select("SELECT projectId, name, startDate, endDate FROM project ORDER BY 1;")
 List<Project> getProjects();
+
 @Select("SELECT DISTINCT Region, Continent " + "FROM Country WHERE Continent =#{continent}" + "ORDER BY 1")
 List<String> getRegionsForContinent(@Param("continent") String continent);
+
 @Select("SELECT Code, Name, Region, Continent " + "FROM Country WHERE region=#{region} "+"ORDER BY 2" )
 List<Country> getCountriesForRegion(@Param("region") String region);
+
 @Select("SELECT CountryCode, Name, District " + "FROM City WHERE CountryCode=#{CountryCode} "+"ORDER BY 2" )
 List<City> getCitiesForCountry(@Param("CountryCode") String CountryCode);
+
+@Select("SELECT employeeId, fName FROM employee where fName=#{fName};")
+List<Employee> getEmployeeByName(String fName);
 }
