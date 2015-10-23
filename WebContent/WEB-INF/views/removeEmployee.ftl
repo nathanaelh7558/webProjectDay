@@ -37,26 +37,6 @@
 	<#if errorMessages??>${errorMessages}<#else></#if>
 	</div>
 </div>
-
-<br>
-<br>
-<br>
-<#if removeEmployee??>		
-	<table class = "pure-table pure-table-bordered">
-	<thead>
-	<tr><th>Employee Id</th><th>Employee First Name</th></tr>
-	</thead>
-	<#list removeEmployee as employee>
-	<tbody>
-		<tr>
-		<td>${employee.employeeId}</td>
-		<td>${employee.fname}</td>
-		</tr>
-	</tbody?>
-	</#list>
-	</table>
-<#else></#if>
-	
 	
 </body>
 

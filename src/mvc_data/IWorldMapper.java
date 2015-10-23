@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 public interface IWorldMapper {
 	String GET_PERSON_BY_ID = "SELECT employeeId,dob,fname, lname, title, salary FROM employee WHERE fName = #{personId, jdbcType=VARCHAR} ORDER BY 1;";
+	String GET_PROJECT_BY_ID = "SELECT projectId,name,startDate, endDate FROM project WHERE name = #{personId, jdbcType=VARCHAR} ORDER BY 1;";
+	
 	String GET_EMP_BY_ID = "SELECT employeeId,dob,fname, lname, title, salary FROM employee WHERE employeeId = #{ID};";
 
 @Select("SELECT employeeId,dob,fname, lname, title, salary FROM employee ORDER BY 1;")
@@ -15,6 +17,9 @@ List<Employee> getEmployees();
 
 @Select(GET_PERSON_BY_ID)
 List<Employee> searchEmployees(String personId);
+
+@Select(GET_PROJECT_BY_ID)
+List<Project> searchProjects(String personId);
 
 @Select(GET_EMP_BY_ID)
 Employee updateEmployee(long ID);

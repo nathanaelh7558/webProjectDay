@@ -69,6 +69,10 @@ public String adminPage2(Model m){
 public String addProject(Model m){
 	return "addProject";
 }
+@RequestMapping("/removeProject.mvc")
+public String removeProject(Model m){
+	return "removeProject";
+}
 
 @RequestMapping("/manageemployees.mvc")
 public String manageEmployees(Model m){
@@ -83,7 +87,22 @@ public String manageProjects(Model m){
 	m.addAttribute("projects", worldMapper.getProjects());
 	return "manageProjects";
 }
-
+@RequestMapping("/delete_project.mvc")
+public String deleteProject(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	System.out.println("wassssapppp");
+	String ID=request.getParameter("pID");
+	Connection c;
+	try {
+		c = dataSource.getConnection();
+		Statement s = c.createStatement();
+		String sqlString = "CALL removeProject("+ID+");";
+		s.executeUpdate(sqlString);			      
+		return "adminPage2";	     
+	} catch (Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
+}
 
 @RequestMapping(value = "/newEmployee.mvc")
 protected String doNewEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -171,27 +190,33 @@ public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResp
 		
 		m.addAttribute("removeEmployee", worldMapper.getEmployeeByName(name));
 		return "removeEmployee";
-//		Connection c;
-//		try {
-//			c = dataSource.getConnection();
-//			PreparedStatement stmt = c.prepareStatement("select employeeId, fName from employee where fName =?");
-//			log.info(name);
-//				      stmt.setString(1,name);
-//				      ResultSet rs =  stmt.executeQuery();
-//				      if(rs.next()) {
-//				    	  while (rs.next()) {
-//					    	  log.info("**********************");
-//					      }  
-//				      } else {
-//				    	  m.addAttribute("errorMessages", "No results found, verify name");
-//				      }
-//				          
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return "error";
-//		}
-//		
-//		return "removeEmployee";
+	}
+	@RequestMapping("/search_project.mvc")
+	public String searchProject(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String name=request.getParameter("fNameInput");
+		Connection c;
+		try {
+			c = dataSource.getConnection();	
+			log.info(name);
+			c = dataSource.getConnection();
+			Statement s = c.createStatement();
+			String sqlString = "SELECT name FROM project WHERE name LIKE '%"+name+"%' ORDER BY 1;";
+			ResultSet rs = s.executeQuery(sqlString);			      
+				      if(rs.next()) {
+				    	  System.out.println("GOINGIN HERE");
+				    	  m.addAttribute("projects", worldMapper.searchProjects(name));
+				    		return "removeProjectSearch";  
+				      } else {
+				    	  m.addAttribute("errorMessages", "No results found, verify name");
+				      }
+				          
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		
+		m.addAttribute("removeEmployee", worldMapper.getEmployeeByName(name));
+		return "removeEmployee";
 	}
 	@RequestMapping("/search_employee2.mvc")
 	public String searchEmployee2(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -277,10 +302,6 @@ protected String doNewUpdateEmployee(Model m,HttpServletRequest request, HttpSer
 }
 
 
-@RequestMapping("/newproject.mvc")
-public String goToProject(Model m){
-	return "addProject";
-}
 @RequestMapping(value = "/newProject.mvc")
 protected String doNewProject(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	PrintWriter pw=response.getWriter();
@@ -288,6 +309,7 @@ protected String doNewProject(Model m,HttpServletRequest request, HttpServletRes
 		String n1=request.getParameter("pNameInput");
 		String n2=request.getParameter("startDateInput");
 		String n3=request.getParameter("endDateInput");
+		System.out.println(n2 + n3);
 		Connection c;
 		try {
 			
@@ -296,20 +318,24 @@ protected String doNewProject(Model m,HttpServletRequest request, HttpServletRes
 				java.util.Date startDate = null;
 				java.util.Date endDate = null;
 				java.sql.Date sqlDate = null;
+				java.sql.Date sqlDate2 = null;
+
 				try {
 					startDate = formatter.parse(n2);
 					endDate = formatter.parse(n3);
-					//sqlDate = new java.sql.Date(dob.getTime());
+					sqlDate = new java.sql.Date(startDate.getTime());
+					sqlDate2 = new java.sql.Date(endDate.getTime());
+					System.out.println(sqlDate);
+					c = dataSource.getConnection();
+					Statement s = c.createStatement();
+					String sqlString = "CALL addProject(\""+n1+"\",'"+sqlDate+"','"+sqlDate2+"');";
+					System.out.println(sqlString);
+					s.executeUpdate(sqlString);
+				return "user created";
 				} catch (ParseException e) {
-						
+					return "error";	
 				}
-			System.out.println(sqlDate);
-			c = dataSource.getConnection();
-			Statement s = c.createStatement();
-			String sqlString = "CALL addProject('"+n1+"',\""+startDate+"\",\""+endDate+"\");";
-			//System.out.println(sqlString);
-			s.executeUpdate(sqlString);
-		return "user created";
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

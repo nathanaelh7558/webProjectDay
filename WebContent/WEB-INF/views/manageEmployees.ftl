@@ -23,7 +23,7 @@
 </div>
 
 <div id=container>
-<form name="newEmployeeForm" action="addemployee.mvc" method="POST">
+<form name="newEmployeeForm" action="newEmployee.mvc" method="POST">
 	<section>
 	<h3>Add a new Employee</h3	>
 	  <ul class="input-list style-1 clearfix">
