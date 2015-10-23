@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -20,5 +19,9 @@
 
 </div>
 
+
+<!--<#if adminName??><h2>Welcome ${adminName} </h2><#else></#if>-->
+
+
+
  </body>
-</html>

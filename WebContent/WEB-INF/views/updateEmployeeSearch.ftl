@@ -19,6 +19,7 @@
    <li><a href='addemployeepage.mvc'><span>Add Employee</span></a></li>
    <li><a href='remove_employee_page.mvc'><span>Remove Employee</span></a></li>
    <li><a href='update_employee_details.mvc'><span>Update Details</span></a></li>
+   <li><a href='assing_employee.mvc'><span>Assign employee</span></a></li>
 </ul>
 
 </div>

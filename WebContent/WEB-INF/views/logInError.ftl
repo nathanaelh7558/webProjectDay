@@ -17,7 +17,7 @@
 <h3>Employee System Login</h3>
 <ul class="input-list style-1 clearfix">
  <li><input type="text" name="usernameInput" placeholder="Username"></li>
- <li><input type="text" name="password" placeholder="Password"></li>
+ <li><input type="password" name="password" placeholder="Password"></li>
  <input type="Submit" value = "Submit" />
 ERROR! UNAUTHORIZED ACCESS!
   </ul>

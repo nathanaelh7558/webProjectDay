@@ -23,16 +23,13 @@
 </div>
 
 <div id=container>
-<form name="newEmployeeForm" action="newEmployee.mvc" method="POST">
+<form name="newEmployeeForm" action="assign_employee_controller.mvc" method="POST">
 	<section>
-	<h3>Add a new Employee</h3	>
+	<h3>Assign employee to project</h3	>
 	  <ul class="input-list style-1 clearfix">
-	  	<li><input type="text" name="titleInput" placeholder="Title"></li>
-	  	<li><input type="text" name="fNameInput" placeholder="First Name"></li>
-	  	<li><input type="text" name="lNameInput" placeholder="Last Name"></li>
-	  	<li><input type="date" name="dobInput" placeholder="Date of Birth (DD-MM-YYYY)"></li> 	
-	  	<li><input type="number" name="salaryInput" placeholder="Salary"></li>
-	  	<input type="submit" value="Add Employee">
+	  	<li><input type="text" name="empID" placeholder="Employee ID"></li>
+	  	<li><input type="text" name="proID" placeholder="Project ID"></li>
+	  	<input type="submit" value="Assign employee">
 	  </ul>
 	</section>
 </form>

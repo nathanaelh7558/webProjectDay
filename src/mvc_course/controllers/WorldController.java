@@ -363,10 +363,9 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 					m.addAttribute("adminName", rs.getString("name"));
 					return "adminPage";
 				} else if (category.equals("Finance")){
-					System.out.println("go here");
-					return "financeEmployee";
+					return "homeFinanceEmployee";
 				}  else if (category.equals("Chris")){
-					return "Chris";
+					return "chrisPage";
 				} else {
 					return "logInError";
 				}
@@ -382,9 +381,29 @@ protected String doPost(Model m,HttpServletRequest request, HttpServletResponse 
 	
 }
 
-@RequestMapping("/view_payroll.mvc")
+@RequestMapping("/home_finance_employee.mvc")
+public String homeFinanceEmpoyee(Model m){
+	return "homeFinanceEmployee";
+}
+
+@RequestMapping("/view_pay_roll.mvc")
 public String viewPayroll(Model m){
-	return "financeEmployee";
+	return "viewPayroll";
+}
+
+@RequestMapping("/profits.mvc")
+public String viewProfits(Model m){
+	return "viewProfits";
+}
+
+@RequestMapping("/assing_employee.mvc")
+public String assignEmployee(Model m){
+	return "assignEmployee";
+}
+
+@RequestMapping("/assign_employee_controller.mvc")
+public String assignEmployeeToProject(Model m){
+	return "assignEmployee";
 }
 
 public boolean setSalary(String salary) {
@@ -394,7 +413,6 @@ public boolean setSalary(String salary) {
 
 		return false;
 	}
-	
 }
 
 public boolean setTitle(String title) {
