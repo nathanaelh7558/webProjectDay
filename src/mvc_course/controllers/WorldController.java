@@ -74,6 +74,12 @@ public String removeProject(Model m){
 	return "removeProject";
 }
 
+@RequestMapping("/viewProjectsWithoutEmployees.mvc")
+public String viewProjectsWithoutEmployees(Model m){
+	return "viewProjectsWithoutEmployees";
+}
+
+
 @RequestMapping("/manageemployees.mvc")
 public String manageEmployees(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
