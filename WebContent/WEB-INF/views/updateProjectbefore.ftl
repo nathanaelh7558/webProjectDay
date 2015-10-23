@@ -23,11 +23,11 @@
 </div>
 
 <div id=container>
-<form name="newEmployeeForm" action="search_project.mvc" method="POST">
+<form name="newEmployeeForm" action="update_project.mvc" method="POST">
 	<section>
 	<h3>Update Project</h3	>
 	  <ul class="input-list style-1 clearfix">
-	  	<li><input type="text" name="fNameInput" placeholder="Type project ID"></li>
+	  	<li><input type="text" name="pID" placeholder="Type project ID"></li>
 	  	<input type="submit" value="Update Project">
 	  </ul>
 	</section>

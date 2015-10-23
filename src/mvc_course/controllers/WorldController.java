@@ -74,6 +74,12 @@ public String removeProject(Model m){
 	return "removeProject";
 }
 
+@RequestMapping("/viewProjectsWithoutEmployees.mvc")
+public String viewProjectsWithoutEmployees(Model m){
+	return "viewProjectsWithoutEmployees";
+}
+
+
 @RequestMapping("/manageemployees.mvc")
 public String manageEmployees(Model m){
 	m.addAttribute("employees", worldMapper.getEmployees());
@@ -218,6 +224,7 @@ public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResp
 		m.addAttribute("removeEmployee", worldMapper.getEmployeeByName(name));
 		return "removeEmployee";
 	}
+	
 	@RequestMapping("/search_employee2.mvc")
 	public String searchEmployee2(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		  log.info("*********entered*************");
@@ -249,6 +256,10 @@ public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResp
 public String updateEmployee(Model m){
 	return "updateEmployee";
 }
+@RequestMapping("/updateProject.mvc")
+public String gotoUpdateP(Model m){
+	return "updateProjectbefore";
+}
 
 @RequestMapping("/acUpdate_employee.mvc")
 public String acUpdateEmployee(Model m, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -256,6 +267,13 @@ public String acUpdateEmployee(Model m, HttpServletRequest request, HttpServletR
 	long temp = Long.parseLong(ID);
 	m.addAttribute("employee", worldMapper.updateEmployee(temp));
 	return "acUpdateEmployees";
+}
+@RequestMapping("/update_project.mvc")
+public String acUpdateProject(Model m, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	String ID=request.getParameter("pID");
+	long temp = Long.parseLong(ID);
+	m.addAttribute("project", worldMapper.updateProject(temp));
+	return "updateProject";
 }
 @RequestMapping(value = "/newUpdateEmployee.mvc")
 protected String doNewUpdateEmployee(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -297,7 +315,48 @@ protected String doNewUpdateEmployee(Model m,HttpServletRequest request, HttpSer
 			return "#";
 		}
 }
+@RequestMapping(value = "/doUpdateProject.mvc")
+protected String doNewUpdateProject(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter pw=response.getWriter();
+		response.setContentType("text/html");
+		String n0=request.getParameter("pIdInput");
+			String n1=request.getParameter("pNameInput");
+			String n2=request.getParameter("startDateInput");
+			String n3=request.getParameter("endDateInput");
+			System.out.println(n2 + n3);
+			Connection c;
+			try {
+				
+					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+					//java.util.Date dob = null;
+					java.util.Date startDate = null;
+					java.util.Date endDate = null;
+					java.sql.Date sqlDate = null;
+					java.sql.Date sqlDate2 = null;
 
+					try {
+						startDate = formatter.parse(n2);
+						endDate = formatter.parse(n3);
+						sqlDate = new java.sql.Date(startDate.getTime());
+						sqlDate2 = new java.sql.Date(endDate.getTime());
+						System.out.println(sqlDate);
+						c = dataSource.getConnection();
+						Statement s = c.createStatement();
+			
+			String sqlString = "CALL updateProject("+n0+", \""+n1+"\",'"+sqlDate+"','"+sqlDate2+"');";
+			System.out.println(sqlString);
+			s.executeUpdate(sqlString);
+		return "manageprojects.mvc";
+		}catch(ParseException e){
+			return "#";
+		}	
+			}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "#";
+		} 
+			
+}
 
 @RequestMapping(value = "/newProject.mvc")
 protected String doNewProject(Model m,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -385,6 +444,8 @@ public String homeFinanceEmpoyee(Model m){
 
 @RequestMapping("/view_pay_roll.mvc")
 public String viewPayroll(Model m){
+	System.out.println(worldMapper.getPayroll());
+	m.addAttribute("payrolls", worldMapper.getPayroll());
 	return "viewPayroll";
 }
 

@@ -17,7 +17,7 @@
    <li><a href='projects.mvc'><span>View Projects</span></a></li>
    <li><a href='addProject.mvc'><span>Add Project</span></a></li>
    <li><a href='removeProject.mvc'><span>Remove Project</span></a></li>
-   <li><a href='#'><span>Update Project</span></a></li>
+   <li><a href='updateProject.mvc'><span>Update Project</span></a></li>
 </ul>
 </div>
 <h1>Projects</h1>
