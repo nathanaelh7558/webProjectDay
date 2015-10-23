@@ -39,4 +39,5 @@ List<City> getCitiesForCountry(@Param("CountryCode") String CountryCode);
 
 @Select("SELECT employeeId, fName FROM employee where fName=#{fName};")
 List<Employee> getEmployeeByName(String fName);
+
 }

@@ -242,11 +242,8 @@ public String deleteEmployee(Model m,HttpServletRequest request, HttpServletResp
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
-		}
-		
-		
+		}		
 	}
-
 
 @RequestMapping("/update_employee_details.mvc")
 public String updateEmployee(Model m){
@@ -325,7 +322,7 @@ protected String doNewProject(Model m,HttpServletRequest request, HttpServletRes
 					endDate = formatter.parse(n3);
 					sqlDate = new java.sql.Date(startDate.getTime());
 					sqlDate2 = new java.sql.Date(endDate.getTime());
-					System.out.println(sqlDate);
+		
 					c = dataSource.getConnection();
 					Statement s = c.createStatement();
 					String sqlString = "CALL addProject(\""+n1+"\",'"+sqlDate+"','"+sqlDate2+"');";
@@ -402,7 +399,52 @@ public String assignEmployee(Model m){
 }
 
 @RequestMapping("/assign_employee_controller.mvc")
-public String assignEmployeeToProject(Model m){
+public String assignEmployeeToProject(Model m,HttpServletRequest request, HttpServletResponse response){
+	
+	String proID=request.getParameter("empID");
+	String empID=request.getParameter("proID");
+	String startDate =request.getParameter("startDate");
+	String endDate  = request.getParameter("endDate");
+	
+	startDate = startDate.replaceAll("/", "-");
+	endDate =   endDate.replaceAll("/", "-");
+	
+	log.info(startDate);
+	log.info(endDate);
+
+	
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	
+	java.util.Date startDateF = null;
+	java.util.Date endDateF = null;
+	java.sql.Date  sqlDate = null;
+	java.sql.Date  sqlDate2 = null;
+	Connection c;
+	try {
+		
+		c = dataSource.getConnection();
+		Statement s = c.createStatement();
+		
+		startDateF = formatter.parse(startDate);
+		endDateF = formatter.parse(endDate);
+		
+		sqlDate = new java.sql.Date(startDateF.getTime());
+		sqlDate2 = new java.sql.Date(endDateF.getTime());
+		
+		String sqlString = "CALL assignToProject("+empID+ ","+proID+",'"+sqlDate+"','"+sqlDate2+"');";
+		log.info(sqlString);
+		int test = s.executeUpdate(sqlString);
+		
+		if(test == 1) {
+			log.info("worked");
+		}
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	
 	return "assignEmployee";
 }
 

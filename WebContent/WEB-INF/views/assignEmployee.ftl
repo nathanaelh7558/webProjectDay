@@ -29,6 +29,8 @@
 	  <ul class="input-list style-1 clearfix">
 	  	<li><input type="text" name="empID" placeholder="Employee ID"></li>
 	  	<li><input type="text" name="proID" placeholder="Project ID"></li>
+	    <li><input type="date" name="startDate" placeholder="Start date"></li>
+	  	<li><input type="date" name="endDate" placeholder="End date"></li>
 	  	<input type="submit" value="Assign employee">
 	  </ul>
 	</section>
